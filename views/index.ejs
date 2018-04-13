@@ -1,0 +1,10 @@
+<h1>Index Page</h1>
+<% for(let blog of blogs) {%>
+  <div>
+    <h2><%= blog.title %></h2>
+    <img src="<%= blog.image %>" alt="" height="486" width="720">
+    <span><%= blog.created %></span>
+    <p><%= blog.body %></p>
+  </div>
+
+<% } %>
