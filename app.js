@@ -9,7 +9,7 @@ mongoose.connect("mongodb://localhost/blog_app", (err) =>{
     console.log(err);
 });
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 
