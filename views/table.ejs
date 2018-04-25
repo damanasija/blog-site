@@ -1,0 +1,60 @@
+<% include ./partials/header %>
+<div class="ui main text container">
+  <div class="ui main header">RESTful routes</div>
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Path</th>
+        <th>HTTP Verb</th>
+        <th>Purpose</th>
+        <th>Mongoose Method</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>INDEX</td>
+        <td>/blogs</td>
+        <td>GET</td>
+        <td>Shows all blog posts.</td>
+        <td>Blog.find()</td>
+      </tr>
+      <tr>
+        <td>CREATE</td>
+        <td>/blogs</td>
+        <td>POST</td>
+        <td>Creates a new blog post.</td>
+        <td>Blog.create()</td>
+      </tr>
+      <tr>
+        <td>SHOW</td>
+        <td>/blogs/:id</td>
+        <td>GET</td>
+        <td>Shows a particular blog post.</td>
+        <td>Blog.findById()</td>
+      </tr>
+      <tr>
+        <td>EDIT</td>
+        <td>/blogs/:id/edit</td>
+        <td>GET</td>
+        <td>Shows a form to edit a blog post.</td>
+        <td>Blog.findById()</td>
+      </tr>
+      <tr>
+        <td>UPDATE</td>
+        <td>/blogs/:id</td>
+        <td>PUT</td>
+        <td>Updates changes to database.</td>
+        <td>Blog.findByIdAndUpdate()</td>
+      </tr>
+      <tr>
+        <td>DESTROY</td>
+        <td>/blogs/:id</td>
+        <td>DELETE</td>
+        <td>Deletes a particular blog post.</td>
+        <td>Blog.findByIdAndRemove()</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<% include ./partials/footer %>
