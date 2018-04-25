@@ -44,10 +44,15 @@ app.get("/", (req, res) => {
 // INDEX ROUTE
 app.get("/blogs", (req, res) => {
   Blog.find({}, (err, allBlogs) => {
-    if(err)
+    if(err){
       console.log(err);
-    else
-      res.render("index", {blogs: allBlogs});
+    } else {
+      if(allBlogs.length == 0){
+        res.render("error", {errorCode: "Wow, such empty!", errorText: "No blogs at all!"});
+      } else {
+        res.render("index", {blogs: allBlogs});
+      }
+    }
   });
 });
 // NEW ROUTE
@@ -63,7 +68,7 @@ app.post("/blogs", (req, res) => {
   //newBlog["created"] = new Date;
   Blog.create(newBlog, (err, newBlog) =>{
     if(err)
-      res.render("new");
+      res.render("error", {errorCode: 500, errorText: "Internal Server error. Couldn't save to database"});
     else
       res.redirect("/blogs");
   });
@@ -72,7 +77,7 @@ app.post("/blogs", (req, res) => {
 app.get("/blogs/:id", (req, res) => {
   Blog.findById(req.params.id, (err, foundBlog) => {
     if(err)
-      res.redirect("/blogs");
+      res.render("error", {errorCode: 400, errorText: "No such blog present!"});
     else{
       res.render("show", {blog: foundBlog});
     }
@@ -116,6 +121,10 @@ app.delete("/blogs/:id/", (req, res) => {
 
 app.get("/routes", (req, res) => {
   res.render("table");
+});
+
+app.get("/*", (req, res) => {
+  res.render("error", {errorCode: 404, errorText: "Nothing Found!"});
 });
 
 app.listen(PORT, () => {
