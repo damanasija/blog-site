@@ -131,6 +131,6 @@ app.get("/*", (req, res) => {
   res.render("error", {errorCode: 404, errorText: "Nothing Found!"});
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server Started");
 });
