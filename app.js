@@ -7,10 +7,13 @@ const expressSanitizer = require("express-sanitizer");
 const PORT = process.env.PORT || 3000;
 
 // APP CONFIG
-mongoose.connect("mongodb://localhost/blog_app", (err) =>{
+const connectionUri = 'mongodb://admin:pass1234@ds257551.mlab.com:57551/blog-app';
+// const connectionUri = 'mongodb://localhost/blog_app';
+mongoose.connect(connectionUri, (err) =>{
   if(err)
     console.log(err);
 });
+
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -77,7 +80,8 @@ app.post("/blogs", (req, res) => {
 app.get("/blogs/:id", (req, res) => {
   Blog.findById(req.params.id, (err, foundBlog) => {
     if(err)
-      res.render("error", {errorCode: 400, errorText: "No such blog present!"});
+      res.render("error", {errorCode: 404, errorText: "No such blog present!"});
+      // res.send("12");
     else{
       res.render("show", {blog: foundBlog});
     }
