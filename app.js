@@ -7,11 +7,11 @@ const expressSanitizer = require("express-sanitizer");
 const PORT = process.env.PORT || 3000;
 
 // APP CONFIG
-const connectionUri = 'mongodb://admin:pass1234@ds257551.mlab.com:57551/blog-app';
-// const connectionUri = 'mongodb://localhost/blog_app';
-mongoose.connect(connectionUri, (err) =>{
-  if(err)
-    console.log(err);
+const connectionUrl = 'mongodb://admin:pass1234@ds257551.mlab.com:57551/blog-app';
+// const connectionUrl = 'mongodb://localhost/blog_app';
+mongoose.connect(connectionUrl, { useNewUrlParser: true }, (err, res) => {
+  if (err) throw err;
+  console.log('Database online');
 });
 
 app.set("view engine", "ejs");

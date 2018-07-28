@@ -22,7 +22,7 @@
     "express": "^4.16.3",
     "express-sanitizer": "^1.0.4",
     "method-override": "^2.3.10",
-    "mongoose": "^5.0.14",
+    "mongoose": "^5.2.5",
     "semantic-ui-css": "^2.3.1"
   }
 }
